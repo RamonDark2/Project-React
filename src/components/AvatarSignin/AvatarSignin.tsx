@@ -93,7 +93,7 @@ function AvatarSignIn({
           />
         </div>
       </button>
-
+            
       {/* Dropdown Menu */}
       {isOpen && (
         <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden z-50 animate-fade-in">

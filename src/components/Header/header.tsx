@@ -22,10 +22,10 @@ function Header(){
 
   
   return(
-<div className="flex md:flex-row flex-col justify-center gap-4 md:justify-between w-full px-8 p-4 font-semibold text-gray-950">
+<div className="flex md:flex-row flex-col justify-center gap-4 md:justify-between w-full px-6 py-2 font-semibold text-gray-950">
 
           <div className='flex flex-row gap-2 justify-between'>
-            <span className="font-playfair font-semibold text-white text-2xl flex items-center">Serra da Capivara</span>
+            <a href='/' className="font-playfair font-semibold text-white hover:text-opacity-65 text-2xl flex items-center hover:bg-white rounded-md hover:bg-opacity-20 px-4">React Project</a>
             <div className='md:hidden flex'>
              <AvatarSignIn
               user={user}
@@ -33,15 +33,15 @@ function Header(){
               onLogout={() => {setUser(null) 
               localStorage.clear() 
               navigate('/')}}
-              onProfile={() => navigate('/profile')}
-              onSettings={() => navigate('/settings')}
+              onProfile={() => navigate('/')}
+              onSettings={() => navigate('/')}
             />
             </div>
           </div>
 
           <div className='flex justify-center items-center space-x-6 lg:space-x-10 md:pr-[8.5rem] text-white text-base'>
             <a target='_blank' href='https://www.instagram.com/ramon_rrc/' className='hover:bg-opacity-20 px-2 rounded-full hover:bg-gray-50 text-nowrap'>Instagram</a>
-            <a href='/' className='px-2 rounded-full hover:bg-gray-50 hover:bg-opacity-20 text-nowrap'>Sobre mim</a>
+            <a href='/meu-portfolio' className='px-2 rounded-full hover:bg-gray-50 hover:bg-opacity-20 text-nowrap'>Sobre mim</a>
             <a target='_blank' href='https://www.linkedin.com/in/ramon-rodrigues-48459721b/' className='hover:bg-opacity-20 px-2 rounded-full hover:bg-gray-50 text-nowrap'>Linkedin</a>
           </div>
           <div className='md:flex md:flex-row gap-2.5 hidden'>
@@ -51,8 +51,8 @@ function Header(){
               onLogout={() => {setUser(null) 
               localStorage.clear() 
               navigate('/')}}
-              onProfile={() => navigate('/profile')}
-              onSettings={() => navigate('/settings')}
+              onProfile={() => navigate('/')}
+              onSettings={() => navigate('/')}
             />
           </div>
         </div>

@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import ErrorPage from './pages/ErrorPage';
+import SobreMim from './pages/SobreMim';
 
 /**
  * Configuração de todas as rotas da aplicação
@@ -35,6 +36,14 @@ const routes: RouteConfig[] = [
     middlewares: [
       Middlewares.guest, 
       Middlewares.setMeta({ title: 'Login' }),
+    ],
+  },
+
+  {
+    path: '/meu-portfolio',
+    component: SobreMim,
+    middlewares: [
+      Middlewares.setMeta({ title: 'Sobre Mim' }),
     ],
   },
 
