@@ -13,7 +13,7 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({ context }) => {
   const [email, setEmail] = useState('user@example.com');
   const [password, setPassword] = useState('password');
-  const [error, setError] = useState('');
+  const [error] = useState('');
 
   const { navigate } = useRouter();
 const handleLogin = () => {
@@ -25,17 +25,6 @@ const handleLogin = () => {
   localStorage.setItem('user', JSON.stringify(user));
   navigate('/');
 };
-
-
-  const handleQuickLogin = (type: 'user' | 'admin') => {
-    if (type === 'user') {
-      setEmail('user@example.com');
-      setPassword('123456');
-    } else {
-      setEmail('admin@example.com');
-      setPassword('admin123');
-    }
-  };
 
   return (
     <div className='bg-blue-800'>

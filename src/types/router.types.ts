@@ -1,10 +1,4 @@
 // types/router.types.ts
-
-import { ReactNode } from 'react';
-
-/**
- * Contexto passado para middlewares e componentes de rota
- */
 export interface RouteContext {
   path: string;
   params: Record<string, string>;

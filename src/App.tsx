@@ -1,6 +1,3 @@
-// App.tsx
-
-import React from 'react';
 import Router from './components/Router/Router';
 import { RouteConfig } from './types/router.types';
 import Middlewares from './middleware/index';

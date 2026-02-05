@@ -232,7 +232,7 @@ export class Middlewares {
    * @param meta - Meta informações
    */
   static setMeta(meta: { title?: string; description?: string }): Middleware {
-    return async (context, next) => {
+    return async (_context, next) => {
       if (meta.title) {
         document.title = meta.title;
       }
@@ -334,7 +334,7 @@ static guest: Middleware = async (context, next) => {
    * @param ms - Tempo máximo em milissegundos
    */
   static timeout(ms: number): Middleware {
-    return async (context, next) => {
+    return async (_context, next) => {
       const timeoutPromise = new Promise<void>((_, reject) => {
         setTimeout(() => reject(new Error('Timeout na rota')), ms);
       });
@@ -368,8 +368,9 @@ static guest: Middleware = async (context, next) => {
   /**
    * Middleware para scroll to top
    */
-  static scrollToTop: Middleware = async (context, next) => {
+  static scrollToTop: Middleware = async (_context, next) => {
     window.scrollTo(0, 0);
+    console.log('Scroll para o topo');
     await next();
   };
 
