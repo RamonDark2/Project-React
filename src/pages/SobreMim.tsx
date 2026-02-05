@@ -241,7 +241,7 @@ const skills = [
               <span className="self-start bg-yellow-500 text-white text-sm px-3 py-1 rounded-full font-semibold mb-6">
                 Em andamento
               </span>
-              <p onClick={() => window.location.href =('/meu-portfolio')} className="text-blue-600 font-semibold hover:underline text-lg cursor-pointer mt-auto flex justify-end">Ver site</p>
+              <p onClick={() => window.location.href =('/')} className="text-blue-600 font-semibold hover:underline text-lg cursor-pointer mt-auto flex justify-end">Ver site</p>
             </div>
           </div>
         </div>

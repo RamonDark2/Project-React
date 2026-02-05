@@ -41,7 +41,7 @@ function Header(){
 
           <div className='flex justify-center items-center space-x-6 lg:space-x-10 md:pr-[8.5rem] text-white text-base'>
             <a target='_blank' href='https://www.instagram.com/ramon_rrc/' className='hover:bg-opacity-20 px-2 rounded-full hover:bg-gray-50 text-nowrap'>Instagram</a>
-            <a href='/meu-portfolio' className='px-2 rounded-full hover:bg-gray-50 hover:bg-opacity-20 text-nowrap'>Sobre mim</a>
+            <a href='/landing-page' className='px-2 rounded-full hover:bg-gray-50 hover:bg-opacity-20 text-nowrap'>Minha Landing Page</a>
             <a target='_blank' href='https://www.linkedin.com/in/ramon-rodrigues-48459721b/' className='hover:bg-opacity-20 px-2 rounded-full hover:bg-gray-50 text-nowrap'>Linkedin</a>
           </div>
           <div className='md:flex md:flex-row gap-2.5 hidden'>

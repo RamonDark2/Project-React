@@ -16,16 +16,15 @@ import SobreMim from './pages/SobreMim';
  * Configuração de todas as rotas da aplicação
  */
 const routes: RouteConfig[] = [
-  // Rota: Home
   {
     path: '/',
-    component: Home,
+    component: SobreMim,
     exact: true,
     middlewares: [
       Middlewares.scrollToTop,
       Middlewares.setMeta({
-        title: 'Home - MyApp',
-        description: 'Home',
+        title: 'Meu Portfolio',
+        description: 'Portfólio pessoal de Ramon Rodrigues - Desenvolvedor Front-End',
       }),
     ],
   },
@@ -40,10 +39,10 @@ const routes: RouteConfig[] = [
   },
 
   {
-    path: '/meu-portfolio',
-    component: SobreMim,
+    path: '/landing-page',
+    component: Home,
     middlewares: [
-      Middlewares.setMeta({ title: 'Sobre Mim' }),
+      Middlewares.setMeta({ title: 'Landing Page' }),
     ],
   },
 
