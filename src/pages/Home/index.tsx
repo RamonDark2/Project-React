@@ -3,6 +3,8 @@ import Header from '../../components/Header/header'
 import { FaLongArrowAltDown, FaLongArrowAltRight } from 'react-icons/fa'
 
 function App() {
+   const baseUrl = import.meta.env.BASE_URL;
+
   return (
     <DefaultLayout>
       {/* Seção da imagem de fundo que cobre tudo */}
@@ -11,7 +13,7 @@ function App() {
         <div 
           className="absolute inset-0 w-full h-full border-b border-[#FBD784] shadow-[#244a5e] shadow-2xl"
           style={{
-            backgroundImage: 'url("/img/Plano_de_Fundo.jpeg")',
+            backgroundImage: `url("${baseUrl}img/Plano_de_Fundo.jpeg")`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -67,7 +69,7 @@ function App() {
           <div className="sm:w-full md:w-1/2 md:mt-0 ">
             <img 
               className='w-[500px] h-[70vh] object-cover shadow-[#152630] shadow-md' 
-              src="/img/Gruta.jpeg" 
+              src={`${baseUrl}img/Gruta.jpeg`} 
               alt="Gruta" 
             />
           </div>
@@ -80,7 +82,7 @@ function App() {
             {/* IMAGEM (ESQUERDA) */}
             <div className="w-full lg:w-2/5">
               <img
-                src="/img/Mirante_Museu.jpeg"
+                src={`${baseUrl}img/Mirante_Museu.jpeg`}
                 alt="Mirante Museu"
                 className="w-[500px] h-[70vh] object-cover shadow-[#152630] shadow-md"
               />

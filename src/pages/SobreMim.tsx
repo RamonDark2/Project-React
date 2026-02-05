@@ -11,6 +11,8 @@ import { SiTypescript, SiJavascript, SiTailwindcss, SiHtml5, SiAltiumdesigner, }
 import { FaLinkedinIn, FaCss3, FaGit, FaReact } from "react-icons/fa";
 
 const SobreMim: React.FC = () => {
+   const baseUrl = import.meta.env.BASE_URL;
+
 const skills = [
     { name: 'Vue.js', icon: <IoLogoVue className="w-8 h-8" />, color: 'from-green-500/20 to-emerald-500/20 border-green-500/50 text-green-600' },
     { name: 'React', icon: <FaReact className="w-8 h-8" />, color: 'from-blue-500/20 to-blue-600/20 border-blue-500/50 text-blue-600' },
@@ -36,7 +38,7 @@ const skills = [
           <div 
             className="absolute inset-0 opacity-60"
             style={{
-              backgroundImage: 'url(/img/Banner_Linkedin.png)',
+              backgroundImage: `url(${baseUrl}/img/Banner_Linkedin.png)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -49,7 +51,7 @@ const skills = [
                 <div className="relative inline-block mb-8">
                   <div className="w-64 h-64 rounded-full overflow-hidden border-8 border-white shadow-2xl mx-auto md:mx-0">
                     <img 
-                      src="/img/FotoPerfil_Linkedin.png" 
+                      src={`${baseUrl}/img/FotoPerfil_Linkedin.png`}
                       alt="Ramon Rodrigues"
                       className="w-full h-full object-cover"
                     />

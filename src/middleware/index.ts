@@ -309,13 +309,16 @@ export class Middlewares {
    * VERSÃO SIMPLIFICADA - Apenas verifica se existe usuário
    */
 static guest: Middleware = async (context, next) => {
+  console.log('🔍 Guest middleware - path:', context.path);
   const userString = localStorage.getItem('user');
+  console.log('🔍 User encontrado:', !!userString);
 
   if (userString) {
     try {
       const user = JSON.parse(userString);
-
-      if (user && user.email) {
+      
+      if (user?.email) {
+        console.log('🔍 Redirecionando usuário autenticado para /');
         context.redirected = true;
         context.navigate('/');
         return;
@@ -325,8 +328,9 @@ static guest: Middleware = async (context, next) => {
     }
   }
 
-  await next(); // deixa acessar /login
+  await next();
 };
+
 
 
   /**

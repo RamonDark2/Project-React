@@ -1,4 +1,4 @@
-import Router from './components/Router/Router';
+import CustomRouter from './components/Router/Router';
 import { RouteConfig } from './types/router.types';
 import Middlewares from './middleware/index';
 
@@ -9,9 +9,6 @@ import NotFound from './pages/NotFound';
 import ErrorPage from './pages/ErrorPage';
 import SobreMim from './pages/SobreMim';
 
-/**
- * Configuração de todas as rotas da aplicação
- */
 const routes: RouteConfig[] = [
   {
     path: '/',
@@ -42,16 +39,12 @@ const routes: RouteConfig[] = [
       Middlewares.setMeta({ title: 'Landing Page' }),
     ],
   },
-
 ];
 
-/**
- * Componente principal da aplicação
- */
 function App() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Router
+        <CustomRouter
         routes={routes}
         globalMiddlewares={[
           Middlewares.logger,

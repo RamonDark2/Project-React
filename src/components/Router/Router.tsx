@@ -12,20 +12,19 @@ import {
  * Componente Router principal
  * Gerencia navegação e execução de middlewares
  */
-export const Router: React.FC<RouterProps> = ({
+const Router: React.FC<RouterProps> = ({
   routes,
   globalMiddlewares = [],
   notFoundComponent: NotFound,
   errorComponent: ErrorComponent,
 }) => {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [currentPath, setCurrentPath] = useState(
+    window.location.hash.slice(1) || '/'
+  );
   const [context, setContext] = useState<RouteContext | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [isProcessing, setIsProcessing] = useState(true);
 
-  /**
-   * Extrai parâmetros da URL baseado no padrão da rota
-   */
   const extractParams = useCallback(
     (pattern: string, path: string): Record<string, string> => {
       const paramNames: string[] = [];
@@ -55,9 +54,6 @@ export const Router: React.FC<RouterProps> = ({
     []
   );
 
-  /**
-   * Parse query string da URL
-   */
   const parseQuery = useCallback((): Record<string, string> => {
     const params = new URLSearchParams(window.location.search);
     const query: Record<string, string> = {};
@@ -69,9 +65,6 @@ export const Router: React.FC<RouterProps> = ({
     return query;
   }, []);
 
-  /**
-   * Encontra a rota que corresponde ao path atual
-   */
   const findMatchingRoute = useCallback(
     (path: string): RouteConfig | null => {
       return (
@@ -93,17 +86,13 @@ export const Router: React.FC<RouterProps> = ({
     [routes]
   );
 
-  /**
-   * Função de navegação
-   */
   const navigate = useCallback((path: string) => {
-    window.history.pushState({}, '', path);
-    setCurrentPath(path);
+    console.log('🔵 Router.navigate chamado:', path);
+    const cleanPath = path.startsWith('#') ? path.slice(1) : path;
+    window.location.hash = cleanPath;
+    setCurrentPath(cleanPath);
   }, []);
 
-  /**
-   * Executa chain de middlewares
-   */
   const executeMiddlewares = useCallback(
     async (middlewares: Middleware[], ctx: RouteContext): Promise<void> => {
       let index = 0;
@@ -120,11 +109,9 @@ export const Router: React.FC<RouterProps> = ({
     []
   );
 
-  /**
-   * Processa a rota atual
-   */
   const processRoute = useCallback(
     async (path: string) => {
+      console.log('🔵 Processando rota:', path);
       setIsProcessing(true);
       setError(null);
 
@@ -132,12 +119,14 @@ export const Router: React.FC<RouterProps> = ({
         const matchedRoute = findMatchingRoute(path);
 
         if (!matchedRoute) {
+          console.log('🔴 Rota não encontrada');
           setContext(null);
           setIsProcessing(false);
           return;
         }
 
-        // Cria contexto da rota
+        console.log('✅ Rota encontrada:', matchedRoute.path);
+
         const params = extractParams(matchedRoute.path, path);
         const query = parseQuery();
 
@@ -150,21 +139,20 @@ export const Router: React.FC<RouterProps> = ({
           redirected: false,
         };
 
-        // Combina middlewares globais e específicos da rota
         const allMiddlewares = [
           ...globalMiddlewares,
           ...(matchedRoute.middlewares || []),
         ];
 
-        // Executa middlewares
+        console.log('🔵 Executando middlewares...');
         await executeMiddlewares(allMiddlewares, routeContext);
 
-        // Se houve redirecionamento, não atualiza o contexto
         if (!routeContext.redirected) {
+          console.log('✅ Contexto definido');
           setContext(routeContext);
         }
       } catch (err) {
-        console.error('Erro ao processar rota:', err);
+        console.error('🔴 Erro ao processar rota:', err);
         setError(err instanceof Error ? err : new Error('Erro desconhecido'));
       } finally {
         setIsProcessing(false);
@@ -180,31 +168,29 @@ export const Router: React.FC<RouterProps> = ({
     ]
   );
 
-  /**
-   * Efeito para processar mudanças de rota
-   */
   useEffect(() => {
+    console.log('🟢 useEffect disparado - currentPath:', currentPath);
     processRoute(currentPath);
-  }, [currentPath, processRoute]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPath]);
 
-  /**
-   * Efeito para escutar mudanças de histórico (botões voltar/avançar)
-   */
   useEffect(() => {
-    const handlePopState = () => {
-      setCurrentPath(window.location.pathname);
+    console.log('🟢 Registrando listener de hashchange');
+    
+    const handleHashChange = () => {
+      const newPath = window.location.hash.slice(1) || '/';
+      console.log('🟡 Hash mudou! Novo path:', newPath);
+      setCurrentPath(newPath);
     };
 
-    window.addEventListener('popstate', handlePopState);
+    window.addEventListener('hashchange', handleHashChange);
 
     return () => {
-      window.removeEventListener('popstate', handlePopState);
+      console.log('🔴 Removendo listener de hashchange');
+      window.removeEventListener('hashchange', handleHashChange);
     };
   }, []);
 
-  /**
-   * Componente da rota atual
-   */
   const CurrentComponent = useMemo(() => {
     if (error && ErrorComponent) {
       return <ErrorComponent error={error} />;
@@ -249,4 +235,5 @@ export const Router: React.FC<RouterProps> = ({
   return <>{CurrentComponent}</>;
 };
 
+// ✅ EXPORT DEFAULT - Esta é a linha mais importante!
 export default Router;
