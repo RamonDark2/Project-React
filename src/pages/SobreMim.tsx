@@ -38,7 +38,7 @@ const skills = [
           <div 
             className="absolute inset-0 opacity-60"
             style={{
-              backgroundImage: `url(${baseUrl}/img/Banner_Linkedin.png)`,
+              backgroundImage: `url(${baseUrl}img/Banner_Linkedin.png)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -51,7 +51,7 @@ const skills = [
                 <div className="relative inline-block mb-8">
                   <div className="w-64 h-64 rounded-full overflow-hidden border-8 border-white shadow-2xl mx-auto md:mx-0">
                     <img 
-                      src={`${baseUrl}/img/FotoPerfil_Linkedin.png`}
+                      src={`${baseUrl}img/FotoPerfil_Linkedin.png`}
                       alt="Ramon Rodrigues"
                       className="w-full h-full object-cover"
                     />
